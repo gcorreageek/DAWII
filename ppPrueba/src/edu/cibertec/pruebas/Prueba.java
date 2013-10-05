@@ -55,17 +55,98 @@ public class Prueba {
 		try {
 			Curso obj ;
 			Query lista = em.createQuery("select c  from Curso c");
-			
-//			obj =  lista.getResultList().iterator().next();
-//			lista.getResultList().
-			
-//			List<Curso> lst = lista.getResultList();
 			for (Curso curso : (List<Curso>)lista.getResultList()) {
 				System.out.println("Pasa:"+curso.getCodigoCur()+"|"+curso.getNombreCur());
+			} 
+		} catch (Exception e) {
+			em.getTransaction().rollback();
+			System.out.println(e.getMessage());
+		}
+	}
+	@SuppressWarnings("unchecked")
+	private static void Listar2() {
+		EntityManagerFactory emf;
+		EntityManager em;
+		emf = (EntityManagerFactory) Persistence.createEntityManagerFactory("ppPrueba");
+		em = emf.createEntityManager();
+		try {
+			Curso obj ;
+			Query q = em.createQuery("select c  from Curso c where c.nombreCur like :nom");
+			q.setParameter("nom", "%A%");
+			
+			for (Curso curso : (List<Curso>)q.getResultList()) {
+				System.out.println("Pasa:"+curso.getCodigoCur()+"|"+curso.getNombreCur());
+			} 
+		} catch (Exception e) {
+			em.getTransaction().rollback();
+			System.out.println(e.getMessage());
+		}
+	}
+	@SuppressWarnings("unchecked")
+	private static void Listar3() {
+		EntityManagerFactory emf;
+		EntityManager em;
+		emf = (EntityManagerFactory) Persistence.createEntityManagerFactory("ppPrueba");
+		em = emf.createEntityManager();
+		try {
+			Curso obj ;
+			Query q = em.createNamedQuery("Consulta3");
+			q.setParameter(1, 200);
+			q.setParameter(2, 500);
+			
+			for (Curso curso : (List<Curso>)q.getResultList()) {
+				System.out.println("Pasa:"+curso.getCodigoCur()+"|"+curso.getNombreCur());
+			} 
+		} catch (Exception e) {
+			em.getTransaction().rollback();
+			System.out.println(e.getMessage());
+		}
+	}
+	
+	@SuppressWarnings("unchecked")
+	private static void Listar4() {
+		EntityManagerFactory emf;
+		EntityManager em;
+		emf = (EntityManagerFactory) Persistence.createEntityManagerFactory("ppPrueba");
+		em = emf.createEntityManager();
+		try {
+			Curso obj ;
+			Query q = em.createNamedQuery("Consulta2");
+			q.setParameter("variable1", 200);
+			q.setParameter("variable2", 500);
+			
+			for (Curso curso : (List<Curso>)q.getResultList()) {
+				System.out.println("Pasa:"+curso.getCodigoCur()+"|"+curso.getNombreCur());
+			} 
+		} catch (Exception e) {
+			em.getTransaction().rollback();
+			System.out.println(e.getMessage());
+		}
+	}
+	@SuppressWarnings("unchecked")
+	private static void Listar5() {
+		EntityManagerFactory emf;
+		EntityManager em;
+		emf = (EntityManagerFactory) Persistence.createEntityManagerFactory("ppPrueba");
+		em = emf.createEntityManager();
+		try { 
+			Query q = em.createNamedQuery("Consulta4");
+			q.setParameter(1, "001"); 
+			Curso curso = null;
+			
+			try {
+				curso = (Curso) q.getSingleResult();
+			} catch (Exception e) {
+				// TODO: handle exception
 			}
 			
-			 
-			 
+			
+			if(curso!=null){
+				System.out.println("Pasa:"+curso.getCodigoCur()+"|"+curso.getNombreCur()); 	
+			} else{
+				
+				System.out.println("errror!");
+			}
 		} catch (Exception e) {
 			em.getTransaction().rollback();
 			System.out.println(e.getMessage());
@@ -90,7 +171,7 @@ public class Prueba {
 		}
 	}
 	public static void main(String[] args) {
-		Listar();
+		Listar5();
 	}
 
 }

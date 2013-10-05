@@ -9,6 +9,15 @@ import javax.persistence.*;
  * 
  */
 @Entity
+//no tieene que haber espacios
+@NamedQueries({ 
+	@NamedQuery( name="Consulta1", query="select c from Curso c"),
+	@NamedQuery( name="Consulta2", query="select c from Curso c where c.precioCur between :variable1 and :variable2"),
+	@NamedQuery( name="Consulta3", query="select c from Curso c where c.precioCur between ?1 and ?2"),
+	@NamedQuery( name="Consulta4", query="select c from Curso c where c.codigoCur = ?1")
+})
+
+
 public class Curso   implements Serializable {
 //	private static final long serialVersionUID = 1L;
 
