@@ -1,0 +1,41 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core" 
+	xmlns:p="http://primefaces.org/ui" 
+	template="../template/uiConMenu.xhtml">
+	
+	<ui:define name="header">
+	 
+	</ui:define>
+	<ui:define name="content">
+	<h:form>
+	    <p:dataTable value="#{usuarioManaged.usuarios}" var="u"  >
+	    <f:facet name="header">
+	    	<h:outputText value="LISTADO USUARIOS" />
+	    </f:facet> 
+		<p:column headerText="Login" >
+			<h:outputText  value="#{u.usernom}" />
+		</p:column>
+		<p:column headerText="Pass" >
+			<h:outputText  value="#{u.userpwd}" />
+		</p:column>
+		<p:column headerText="Nombre" >
+			<h:outputText  value="#{u.nombre}" />
+		</p:column>
+		<p:column headerText="Correo" >
+			<h:outputText  value="#{u.correo}" />
+		</p:column> 
+		<p:column headerText="Nivel" >
+			<h:outputText  value="#{u.nivelBean.niveldes}" />
+		</p:column>
+		<f:facet name="footer">
+			<p:commandButton  value="nuevoRegistro" action="#{usuarioManaged.nuevo}" ajax="false"  />
+		</f:facet>
+			    
+	    </p:dataTable>
+	</h:form>    
+	    
+	    
+	</ui:define> 
+</ui:composition> 
