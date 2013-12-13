@@ -1,0 +1,55 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<h:head>
+<h:body>
+<h:form>
+
+<h:dataTable value="#{usuario.usuariosmodel}" var="u" border="1">
+	<h:column>
+		#{u.usernom}
+	</h:column>
+	<h:column>
+		#{u.userpwd}
+	</h:column>
+	<h:column>
+		#{u.nombre}
+	</h:column>
+	<h:column>
+		#{u.correo}
+	</h:column>
+	<h:column>
+		#{u.nivelBean.niveldes}
+	</h:column>
+	
+	<h:column>
+		
+		<h:commandLink value="MODIFICAR" action="NUEVO" actionListener="#{usuario.Buscar}">
+		<f:attribute name="unom"  value="#{u.usernom}"></f:attribute>
+		</h:commandLink>
+		
+	</h:column>
+	<h:column>
+		
+		<h:commandLink value="ELIMINAR" action="LISTADO" actionListener="#{usuario.Eliminar}">
+		<f:attribute name="unom"  value="#{u.usernom}"></f:attribute>
+		</h:commandLink>
+		
+	</h:column>
+</h:dataTable>
+<h:commandLink value="Nuevo Usuario" action="NUEVO"></h:commandLink>
+<h:outputText value="#{usuario.mensaje}"></h:outputText>
+</h:form>
+</h:body>
+</h:head>
+</html>
+
+
+
+
+

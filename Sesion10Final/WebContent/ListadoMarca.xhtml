@@ -1,0 +1,84 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+</h:head>
+<h:body>
+<h:form id="form1">
+
+<p:dataGrid value="#{marca.modelsmarca}" var="v" columns="3">
+	<p:column>
+		<p:panel header="#{v.desmarca}">
+				<h:panelGrid columns="1">
+					<p:graphicImage value="images/#{v.idmarca}.jpg" />
+		        	<h:outputText value="#{v.idmarca}"></h:outputText>		
+		        	<h:outputText value="#{v.desmarca}"></h:outputText>
+					
+		        	<p:commandLink update=":form1:panelMarca" oncomplete="marcaDialog.show()">
+		        			<p:graphicImage value="images/search.jpg" />
+		        			<f:setPropertyActionListener target="#{marca.selectedmarca}" value="#{v}"/>        			
+		        	</p:commandLink>
+		        </h:panelGrid>
+		</p:panel>
+	</p:column>
+</p:dataGrid>
+
+
+<p:dataTable value="#{marca.modelsmarca}" var="v" rowKey="#{v.idmarca}" 
+selectionMode="single" selection="#{marca.selectedmarca}" paginator="true" rows="10">
+	<f:facet name="header">
+		<h:outputText value="Listado de Marcas"/>
+	</f:facet>
+		<p:column>
+			<f:facet name="header">
+				<h:outputText value="Codigo"/>
+			</f:facet>
+			<h:outputText value="#{v.idmarca}"/>
+		</p:column>
+		<p:column>
+			<f:facet name="header">
+				<h:outputText value="Descripcion"/>
+			</f:facet>
+			<h:outputText value="#{v.desmarca}"/>
+		</p:column>
+		<p:column>
+			<f:facet name="header">
+				<h:outputText value="Foto"/>
+			</f:facet>
+			<p:graphicImage value="images/#{v.idmarca}.jpg"/>
+		</p:column>
+		
+	<f:facet name="footer">
+		Registros #{marca.modelsmarca.size()}
+		<p:commandButton update=":form1:panelMarca" 
+			oncomplete="marcaDialog.show()" 
+			value="Abrir"/>			
+		
+	</f:facet>
+</p:dataTable>
+
+
+
+
+<p:dialog header="Detalle de la marca" modal="true" widgetVar="marcaDialog">
+	<p:outputPanel id="panelMarca">	
+	<h:panelGrid columns="2">
+		<h:outputText value="Codigo"/>
+		<h:outputText value="#{marca.selectedmarca.idmarca}"/>
+		
+		<h:outputText value="Descripcion"/>
+		<h:outputText value="#{marca.selectedmarca.desmarca}"/>
+		
+		<p:graphicImage value="images/#{marca.selectedmarca.idmarca}.jpg"/>
+	</h:panelGrid>
+    </p:outputPanel>
+</p:dialog>
+
+
+</h:form>
+</h:body>
+</html>

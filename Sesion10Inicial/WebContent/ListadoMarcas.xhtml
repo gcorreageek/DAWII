@@ -1,0 +1,105 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	>
+<h:head></h:head>
+<h:body>
+<h:form id="form1"  >
+
+
+<p:dataGrid value="#{marca.modelsmarca}"  var="v"  columns="3" >
+	<p:column>
+		<p:panel header="#{v.desmarca}" >
+		<h:panelGrid columns="3" >
+			<p:graphicImage value="images/#{v.idmarca}.jpg"></p:graphicImage>
+			<h:outputText value="#{v.idmarca}" ></h:outputText>
+			<h:outputText value="#{v.desmarca}" ></h:outputText>
+			<h:outputText value="#{v.idmarca}" ></h:outputText>
+			<h:outputText value="#{v.desmarca}" ></h:outputText>
+			<h:outputText value="#{v.idmarca}" ></h:outputText>
+			<h:outputText value="#{v.desmarca}" ></h:outputText>
+			<p:commandLink update=":form1:panelMarca"  oncomplete="marcaDialog.show()" >
+				<p:graphicImage value="images/search.png"></p:graphicImage>
+				<f:setPropertyActionListener target="#{marca.selectedmarca}" value="#{v}"></f:setPropertyActionListener>
+			</p:commandLink>
+			
+		</h:panelGrid>
+		
+		</p:panel>		
+	</p:column>
+</p:dataGrid>
+
+
+<p:dataTable  value="#{marca.modelsmarca}" var="v" paginator="true"  selectionMode="single" selection="#{marca.selectedmarca}" rowKey="#{v.idmarca}"  >
+<f:facet name="header">
+<h:outputText value="Listado de Marcas" ></h:outputText>
+</f:facet>
+<p:column>
+<f:facet name="header">
+<h:outputText  value="Codigo" ></h:outputText>
+</f:facet>
+<h:outputText  value="#{v.idmarca}" ></h:outputText>
+</p:column>
+<p:column>
+<f:facet name="header">
+<h:outputText  value="Descripcion" ></h:outputText>
+</f:facet>
+<h:outputText  value="#{v.desmarca}" ></h:outputText>
+</p:column>
+
+<p:column>
+<f:facet name="header">
+<h:outputText  value="Imagen" ></h:outputText>
+</f:facet>
+	<p:graphicImage value="images/#{v.idmarca}.jpg"></p:graphicImage>
+</p:column>
+
+<p:column>
+<f:facet name="header">
+<h:outputText  value="see" ></h:outputText>
+</f:facet>
+<p:commandLink update=":form1:panelMarca"  oncomplete="marcaDialog.show()" >
+				<p:graphicImage value="images/search.png"></p:graphicImage>
+<!-- 				<f:setPropertyActionListener target="#{marca.selectedmarca}" value="#{v}"></f:setPropertyActionListener> -->
+			</p:commandLink>
+
+</p:column>
+
+
+
+<f:facet name="footer">
+<h:outputText value="Registros   #{marca.modelsmarca.size()}" ></h:outputText>
+<p:commandButton update=":form1:panelMarca" oncomplete="marcaDialog.show()" value="Abrir"  >
+
+</p:commandButton>
+</f:facet>
+
+
+</p:dataTable>
+
+
+<p:dialog  header="Detalle de la Marca"  modal="true" widgetVar="marcaDialog" >
+<p:outputPanel  id="panelMarca">
+<h:panelGrid  columns="2" >
+	<h:outputText  value="Codigo"></h:outputText>
+	<h:outputText  value="#{marca.selectedmarca.idmarca}"></h:outputText>
+	
+	<h:outputText  value="Descripcion"></h:outputText>
+	<h:outputText  value="#{marca.selectedmarca.desmarca}"></h:outputText>
+	
+	<p:graphicImage value="images/#{marca.selectedmarca.idmarca}.jpg"></p:graphicImage>
+</h:panelGrid>
+</p:outputPanel>
+</p:dialog>
+
+</h:form>
+
+</h:body>
+
+
+</html>

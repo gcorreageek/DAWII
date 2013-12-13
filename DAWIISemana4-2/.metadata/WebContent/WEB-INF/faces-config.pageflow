@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pageflow:Pageflow xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:pageflow="http://www.sybase.com/suade/pageflow" id="pf13827585673420" configfile="/DAWIISemana4-2/WebContent/WEB-INF/faces-config.xml">
+  <nodes xsi:type="pageflow:PFPage" name="*" id="pf13827588279241" outlinks="pf13827588279242 pf13827588656975" path="*"/>
+  <nodes xsi:type="pageflow:PFPage" name="Listado.xhtml" id="pf13827588279243" referenceLink="//@navigationRule.0/@navigationCase.1/@toViewId|" inlinks="pf13827588279242" path="/Listado.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="Nuevo.xhtml" id="pf13827588656986" referenceLink="//@navigationRule.0/@navigationCase.1/@toViewId|" inlinks="pf13827588656975" path="/Nuevo.xhtml"/>
+  <links id="pf13827588279242" target="pf13827588279243" source="pf13827588279241" outcome="listado"/>
+  <links id="pf13827588656975" target="pf13827588656986" source="pf13827588279241" outcome="nuevo"/>
+</pageflow:Pageflow>

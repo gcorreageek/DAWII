@@ -1,0 +1,67 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+</h:head>
+<h:body>
+	<h:form id="form1">
+		<h:panelGrid columns="2">
+			<h:outputText value="Fecha Inicial"/>
+			<p:calendar value="#{vendedor.date1}" pattern="MM/dd/yyyy hh:mm:ss" />
+		
+			<h:outputText value="Fecha Final"/>
+			<p:calendar value="#{vendedor.date2}" pattern="MM/dd/yyyy hh:mm:ss" />
+			
+			<p:commandButton value="Consultar" update=":form1:tablav"/>
+		</h:panelGrid>	
+		
+		<p:dataTable value="#{vendedor.vendedores}" var="v" 
+		selectionMode="single"
+		rowKey="#{v.ven_cod}"
+		selection="#{vendedor.selectedvendedor}" paginator="true" 
+		rows="10"
+		id="tablav"
+		>
+			<p:column>
+				<f:facet name="header">
+					<h:outputText value="Codigo"/>
+				</f:facet>
+				<h:outputText value="#{v.ven_cod}"/>
+			</p:column>
+			<p:column>
+				<f:facet name="header">
+					<h:outputText value="Nombre"/>
+				</f:facet>
+				<h:outputText value="#{v.ven_nom}"/>
+			</p:column>
+			<p:column>
+				<f:facet name="header">
+					<h:outputText value="Ver Facturas"/>
+				</f:facet>
+				<p:commandButton value="Ver..." update=":form1:tablaf">
+					<f:setPropertyActionListener target="#{factura.codven}" 
+					value="#{v.ven_cod}"/>
+				</p:commandButton>				
+			</p:column>
+		</p:dataTable>		
+		<p:dataTable value="#{factura.facturas}" var="f" id="tablaf">
+			<p:column>
+				<f:facet name="header">
+					<h:outputText value="Numero factura"/>
+				</f:facet>
+				<h:outputText value="#{f.facNum}"/>
+			</p:column>
+			<p:column>
+				<f:facet name="header">
+					<h:outputText value="Cliente"/>
+				</f:facet>
+				<h:outputText value="#{f.cliente.cliNom}"/>
+			</p:column>
+		</p:dataTable>	
+	</h:form>
+</h:body>
+</html>

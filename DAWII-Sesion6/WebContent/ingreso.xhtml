@@ -1,0 +1,26 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+</h:head>
+<h:body>
+
+<h:form>
+	<h:inputHidden value="#{usuario.estado}" />
+	
+	<br/><h:inputText value="#{usuario.usernom}" />
+	<br/><h:inputText value="#{usuario.userpwd}" />
+	<br/><h:inputText value="#{usuario.nombre}" />
+	<br/><h:inputText value="#{usuario.correo}" />
+	<br/><h:inputText value="#{usuario.nivel}" />
+	<br/><h:commandButton value="Grabar" 
+	action="LISTADO" 
+	actionListener="#{usuario.Grabar}" />
+</h:form>
+
+</h:body>
+</html>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pageflow:Pageflow xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:pageflow="http://www.sybase.com/suade/pageflow" id="pf13510368587811" configfile="/DAWII-Sesion7/WebContent/WEB-INF/faces-config.xml">
+  <nodes xsi:type="pageflow:PFPage" name="*" x="122" y="754" id="pf13510383431122" outlinks="pf13510383431123 pf13510383431124 pf13523899304070 pf13523982791802" path="*"/>
+  <nodes xsi:type="pageflow:PFPage" name="exito.xhtml" x="338" y="178" id="pf13510383431125" referenceLink="//@navigationRule.0/@navigationCase.0/@toViewId|" inlinks="pf13510383431123" path="/exito.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="error.xhtml" x="338" y="562" id="pf13510383431136" referenceLink="//@navigationRule.0/@navigationCase.1/@toViewId|" inlinks="pf13510383431124" path="/error.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="nuevo.xhtml" x="338" y="946" id="pf13523899304081" referenceLink="//@navigationRule.0/@navigationCase.2/@toViewId|" inlinks="pf13523899304070" path="/nuevo.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="listado.xhtml" x="338" y="1330" id="pf13523982791813" referenceLink="//@navigationRule.0/@navigationCase.3/@toViewId|" inlinks="pf13523982791802" path="/listado.xhtml"/>
+  <links id="pf13510383431123" target="pf13510383431125" source="pf13510383431122" outcome="SUCCESS"/>
+  <links id="pf13510383431124" target="pf13510383431136" source="pf13510383431122" outcome="ERROR"/>
+  <links id="pf13523899304070" target="pf13523899304081" source="pf13510383431122" outcome="NUEVO"/>
+  <links id="pf13523982791802" target="pf13523982791813" source="pf13510383431122" outcome="LISTADO"/>
+</pageflow:Pageflow>
