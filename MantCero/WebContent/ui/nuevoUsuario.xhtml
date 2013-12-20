@@ -1,0 +1,51 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	template="../template/uiConMenu.xhtml">
+	
+	<ui:define name="header">
+	    
+	</ui:define>
+	<ui:define name="content">
+	    <h:form>
+	       <h:panelGrid columns="2">
+	            <f:facet name="header">
+	               <h:outputText value="Ingreso de Datos" />
+	            </f:facet>
+	            
+	            <h:outputText value="Login" />
+	            <p:keyboard value="#{usuarioManaged.usuario.usernom}"  layout="alphabetic" />
+	            
+	             <h:outputText value="Password" />
+	            <p:keyboard value="#{usuarioManaged.usuario.userpwd}"  layout="qwertybasic" />
+	            
+	              <h:outputText value="Nombre" />
+	            <p:keyboard value="#{usuarioManaged.usuario.nombre}"  layout="alphabetic" />
+	            
+	              <h:outputText value="Correo" />
+	            <p:keyboard value="#{usuarioManaged.usuario.correo}"  layout="alphabetic" />
+	            
+	             <h:outputText value="Nivel" />
+	             <p:selectOneMenu value="#{usuarioManaged.usuario.nivelBean.nivelid}">
+	                 <!-- para agregar una opcion por defecto -->
+	                 <f:selectItem itemLabel="seleccione" itemValue="" />
+	                 <f:selectItems value="#{nivelManaged.niveles}"  var="n" itemLabel="#{n.niveldes}"  itemValue="#{n.nivelid}" />
+	             </p:selectOneMenu>
+	             
+	             
+	            
+	            <h:inputHidden value="#{usuarioManaged.estado}" />
+	            
+	            <p:commandButton value="Grabar" action="#{usuarioManaged.Grabar}" ajax="false" />
+	       </h:panelGrid>
+	    </h:form>
+	</ui:define>
+	
+</ui:composition>

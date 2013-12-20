@@ -1,0 +1,60 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	template="../template/uiConMenu.xhtml">
+	
+	<ui:define name="header">
+	    
+	</ui:define>
+	<ui:define name="content">
+      <h:form>	
+	    <p:dataTable value="#{usuarioManaged.usuarios}" var="u">
+	        <f:facet name="header">
+	            <h:outputText value="Listado de Usuarios"/>
+	        </f:facet>
+	        <p:column headerText="Login">
+	           <h:outputText value="#{u.usernom}" />
+	        </p:column>
+	         <p:column headerText="Password">
+	           <h:outputText value="#{u.userpwd}" />
+	        </p:column>
+	         <p:column headerText="Nombre">
+	           <h:outputText value="#{u.nombre}" />
+	        </p:column>
+	         <p:column headerText="Correo">
+	           <h:outputText value="#{u.correo}" />
+	        </p:column>
+	         <p:column headerText="Nivel">
+	           <h:outputText value="#{u.nivelBean.niveldes}" />
+	        </p:column>
+	        
+	        
+	        <p:column headerText="Buscar">
+	          <p:commandLink action="#{usuarioManaged.Nuevo}" actionListener="#{usuarioManaged.Buscar}" ajax="false">
+	          <h:graphicImage value="/images/icons/editar.ico" />
+	          <f:attribute name="xusernom" value="#{u.usernom}" />
+	          </p:commandLink>
+	        </p:column>
+	        
+	         <p:column headerText="Eliminar">
+	          <p:commandLink action="#{usuarioManaged.Lista}" actionListener="#{usuarioManaged.Eliminar}" ajax="false">
+	          <h:graphicImage value="/images/icons/eliminar.ico" />
+	          <f:attribute name="xusernom" value="#{u.usernom}" />
+	          </p:commandLink>
+	        </p:column>
+	    
+	       <f:facet name="footer">
+	         <p:commandButton value="Nuevo Registro" action="#{usuarioManaged.Nuevo}"  ajax="false" />
+	       </f:facet>
+	    </p:dataTable>
+	</h:form>   
+	</ui:define>
+	
+</ui:composition>

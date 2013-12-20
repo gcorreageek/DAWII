@@ -1,0 +1,57 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	template="../template/uiConMenu.xhtml">
+	
+	<ui:define name="header">
+	    
+	</ui:define>
+	<ui:define name="content">
+      <h:form>	
+	    <p:dataTable value="#{alumnoManaged.alumnos}" var="u">
+	        <f:facet name="header">
+	            <h:outputText value="Listado de Alumnos"/>
+	        </f:facet> 
+	         <p:column headerText="Telefono">
+	           <h:outputText value="#{u.telefono}" />
+	        </p:column>
+	         <p:column headerText="Nombre">
+	           <h:outputText value="#{u.nombre}" />
+	        </p:column>
+	         <p:column headerText="Correo">
+	           <h:outputText value="#{u.email}" />
+	        </p:column>
+	         <p:column headerText="Nivel">
+	           <h:outputText value="#{u.especialidadBean.especialidadnombre}" />
+	        </p:column>
+	        
+	        
+	        <p:column headerText="Buscar">
+	          <p:commandLink action="#{alumnoManaged.Nuevo}" actionListener="#{alumnoManaged.Buscar}" ajax="false">
+	          <h:graphicImage value="/images/icons/editar.ico" />
+	          <f:attribute name="xusernom" value="#{u.idAlumno}" />
+	          </p:commandLink>
+	        </p:column>
+	        
+	         <p:column headerText="Eliminar">
+	          <p:commandLink action="#{alumnoManaged.Lista}" actionListener="#{alumnoManaged.Eliminar}" ajax="false">
+	          <h:graphicImage value="/images/icons/eliminar.ico" />
+	          <f:attribute name="xusernom" value="#{u.idAlumno}" />
+	          </p:commandLink>
+	        </p:column>
+	    
+	       <f:facet name="footer">
+	         <p:commandButton value="Nuevo Registro" action="#{alumnoManaged.Nuevo}"  ajax="false" />
+	       </f:facet>
+	    </p:dataTable>
+	</h:form>   
+	</ui:define>
+	
+</ui:composition>
